@@ -1,0 +1,45 @@
+﻿<Window x:Class="WpfAcrylicBlur.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAcrylicBlur"
+        d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="450"
+        Width="800"
+        BorderThickness="0">
+  <WindowChrome.WindowChrome>
+    <WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}"
+                  GlassFrameThickness="-1"
+                  ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
+                  UseAeroCaptionButtons="True" />
+  </WindowChrome.WindowChrome>
+  <Window.Background>
+    <!--Opacityの値は何でも良い-->
+    <ImageBrush Opacity="1"
+                Stretch="None"
+                TileMode="Tile"
+                Viewport="0,0,128,128"
+                ViewportUnits="Absolute" />
+  </Window.Background>
+  <Grid>
+    <CheckBox Content="背景ぼかしON" Foreground="White"
+                IsChecked="{Binding IsBlurOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0,30,300,0"/>
+    <TextBox HorizontalAlignment="Center"
+             Margin="0,28,0,0"
+             Text="{Binding BackgroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             TextWrapping="Wrap"
+             VerticalAlignment="Top"
+             Width="120"/>
+    <Button Content="再描画"
+            HorizontalAlignment="Center"
+            Margin="250,27,0,0"
+            VerticalAlignment="Top"
+            Command="{Binding ToggleBlurCommand}"/>
+  </Grid>
+</Window>
