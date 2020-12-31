@@ -6,10 +6,13 @@
         xmlns:local="clr-namespace:WpfAcrylicBlur"
         d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="MainWindow"
         Height="450"
         Width="800"
-        BorderThickness="0">
+        BorderThickness="0"
+        AllowsTransparency="True"
+        WindowStyle="None">
+
   <WindowChrome.WindowChrome>
     <WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}"
                   GlassFrameThickness="-1"
@@ -24,7 +27,11 @@
                 Viewport="0,0,128,128"
                 ViewportUnits="Absolute" />
   </Window.Background>
-  <Grid>
+  <Window.Resources>
+    <local:BackgroundBrushConverter x:Key="BackgroundBrushConverter"/>
+  </Window.Resources>
+
+  <Grid Background="{Binding BackgroundColor, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource BackgroundBrushConverter}}">
     <CheckBox Content="背景ぼかしON" Foreground="White"
                 IsChecked="{Binding IsBlurOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 HorizontalAlignment="Center"
@@ -32,7 +39,7 @@
                 Margin="0,30,300,0"/>
     <TextBox HorizontalAlignment="Center"
              Margin="0,28,0,0"
-             Text="{Binding BackgroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             Text="{Binding BackgroundColor, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
              TextWrapping="Wrap"
              VerticalAlignment="Top"
              Width="120"/>

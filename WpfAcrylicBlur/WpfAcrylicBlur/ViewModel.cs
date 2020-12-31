@@ -1,7 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace WpfAcrylicBlur
 {
@@ -14,7 +17,7 @@ namespace WpfAcrylicBlur
       set { SetProperty(ref this._isBlurOn, value, nameof(IsBlurOn), null); }
     }
 
-    private string _backgroundColor = "0x_99333333";
+    private string _backgroundColor = "#99333333";
     public string BackgroundColor
     {
       get { return this._backgroundColor; }
@@ -52,6 +55,20 @@ namespace WpfAcrylicBlur
         return _toggleBlurCommand;
       }
     }
+  }
+
+  public class BackgroundBrushConverter : IValueConverter
+  {
+    private BrushConverter _brushConverter = new BrushConverter();
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+      if (!(value is string)) { throw new NotImplementedException(); }
+
+      return _brushConverter.ConvertFromString((string)value);
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => null;
   }
 
   // プロパティの変更通知を扱うヘルパークラス
