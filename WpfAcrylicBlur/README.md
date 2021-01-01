@@ -6,3 +6,5 @@
 ![demo 02](https://raw.githubusercontent.com/ryokohbato/showcase/images/images/WpfAcrylicBlur__demo__02.png)
 
 ![demo 03](https://raw.githubusercontent.com/ryokohbato/showcase/images/images/WpfAcrylicBlur__demo__03.png)
+
+![demo 04](https://raw.githubusercontent.com/ryokohbato/showcase/images/images/WpfAcrylicBlur__demo__04.png)
